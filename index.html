@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>What are Pathways?</title>
+<style>
+html, body, #graph {
+	height: 100%;
+	margin: 0px;
+	background-color: Cornsilk;
+}
+
+h1, h2, #footer a {
+  color: #006400;
+  padding: 0px 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-block-end: 0px;
+}
+
+#graph
+{
+	margin: 0px 20px 0px 20px;
+}
+
+#header {
+  position: absolute;
+  z-index: 9999;
+}
+
+#footer {
+  position: absolute;
+  z-index: 9999;
+  bottom: 20px;
+}
+
+#footer a {
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+	<h1 id="header">What are Pathways?</h1>
+	<div id="graph"></div>
+	<div id="footer">
+		<h2>"Signaling pathway: Describes a series of chemical reactions in which a group of molecules in a cell work together to control a cell function, such as cell division or cell death."</h2>
+		<a href="https://www.cancer.gov/publications/dictionaries/cancer-terms/def/signaling-pathway" target="_blank">https://www.cancer.gov/publications/dictionaries/cancer-terms/def/signaling-pathway</a>
+	</div>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.17.0/cytoscape.min.js"></script>
+	<script>
+		var cy = cytoscape({
+			container: document.getElementById('graph'),
+			elements: [ // list of graph elements to start with
+				{ 
+				  data: { id: 'h1', text:'', hid:true },
+				  position: {x:0,y:-170}
+				},
+				{ 
+				  data: { id: '1', text:'Pathway' }
+				},
+				{ 
+				  data: { id: '2', text:'Series', parent:'1' },
+				  position: {x:100,y:70}
+				},
+				{ 
+				  data: { id: '3', text:'Chemical Reactions', parent:'1' }
+				},
+				{ 
+				  data: { id: '4', text:'group of' , parent:'3'}
+				},
+				{ 
+				  data: { id: '5a', text:'molecule', parent:'4' },
+				  position: {x:370,y:0}
+				},
+				{ 
+				  data: { id: '5b', text:'molecule', parent:'4' },
+				  position: {x:370,y:100}
+				},
+				{ 
+				  data: { id: '5c', text:'molecule', parent:'4' },
+				  position: {x:600,y:0}
+				},
+				{ 
+				  data: { id: '5d', text:'molecule', parent:'4' },
+				  position: {x:600,y:100}
+				},
+				{ 
+				  data: { id: '8', text:'Cell', parent:'3' }
+				},
+				{ 
+				  data: { id: '9', text:'Function', parent:'8' },
+				  position: {x:975,y:50}
+				},
+				{ 
+				  data: { id: '10', text:'Division', parent:'8' },
+				  position: {x:885,y:160}
+				},
+				{ 
+				  data: { id: '11', text:'Death', parent:'8' },
+				  position: {x:1065,y:160}
+				},
+				{ 
+				  data: { id: '101', source: '2', target: '3', text:'of', directed:true}
+				},
+				{ 
+				  data: { id: '102a', source: '5a', target: '5b', text:'work'}
+				},
+				{ 
+				  data: { id: '102b', source: '5b', target: '5c', text:'work'}
+				},
+				{ 
+				  data: { id: '102c', source: '5c', target: '5d', text:'work'}
+				},
+				{ 
+				  data: { id: '102d', source: '5d', target: '5a', text:'work'}
+				},
+				{ 
+				  data: { id: '102e', source: '5a', target: '5c', text:'work'}
+				},
+				{ 
+				  data: { id: '102f', source: '5b', target: '5d', text:'work'}
+				},
+				{ 
+				  data: { id: '105', source: '4', target: '9', text:'control', directed:true}
+				},
+				{ 
+				  data: { id: '106', source: '9', target: '10', text:'such as', directed:true}
+				},
+				{ 
+				  data: { id: '107', source: '9', target: '11', text:'such as', directed:true}
+				},
+				{ 
+				  data: { id: 'k', text:'Kommunikationssteckbrief' }
+				},
+				{ 
+				  data: { id: 'abs', text:'Communicator', parent:'k', small:true },
+				},
+				{ 
+				  data: { id: 'ich', text:'🤠', parent:'abs', small:true },
+				  position: {x:0,y:370}
+				},
+				{ 
+				  data: { id: 'doz', text:'Lecturer', parent:'abs', small:true },
+				  position: {x:180,y:370}
+				},
+				{ 
+				  data: { id: 'me', text:'(Florian Auer)', parent:'abs', small:true },
+				  position: {x:0,y:415}
+				},
+				{ 
+				  data: { id: 'presents', source: 'me', target: 'ich', text:'', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'rolle', source: 'ich', target: 'doz', text:'in the role as', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'mes', text:'Message', parent:'k', small:true },
+				},
+				{ 
+				  data: { id: 'mes2a', text:'Explain Pathways', parent:'mes', small:true },
+				  position: {x:340,y:340}
+				},
+				{ 
+				  data: { id: 'mes2b', text:'Pathways', parent:'mes', small:true },
+				  position: {x:340,y:400}
+				},
+				{ 
+				  data: { id: 'mes2c', text:'(Pathwayception)', parent:'mes', small:true },
+				  position: {x:340,y:445}
+				},
+				{ 
+				  data: { id: 'how', source: 'mes2c', target: 'mes2b', text:'', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'how2', source: 'mes2b', target: 'mes2a', text:'in the form of', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'c2m', source: 'abs', target: 'mes', text:'', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'med', text:'Medium', parent:'k', small:true },
+				},
+				{ 
+				  data: { id: 'med1', text:'Interactive', parent:'med', small:true },
+				  position: {x:500,y:395}
+				},
+				{ 
+				  data: { id: 'med2', text:'Website', parent:'med', small:true },
+				  position: {x:620,y:365}
+				},
+				{ 
+				  data: { id: 'med3', text:'Graph', parent:'med', small:true },
+				  position: {x:620,y:425}
+				},
+				{ 
+				  data: { id: 'med4', source: 'med1', target: 'med2', text:'', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'med5', source: 'med1', target: 'med3', text:'', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'm2m', source: 'mes', target: 'med', text:'', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'rec', text:'Receiver', parent:'k', small:true },
+				},
+				{ 
+				  data: { id: 'rec1a', text:'Freshmen', parent:'rec', small:true },
+				  position: {x:850,y:365}
+				},
+				{ 
+				  data: { id: 'rec1b', text:'Other Studies', parent:'rec', small:true },
+				  position: {x:780,y:425}
+				},
+				{ 
+				  data: { id: 'rec1c', text:'Interested Amateurs', parent:'rec', small:true },
+				  position: {x:920,y:425}
+				},
+				{ 
+				  data: { id: 'rec2a', source: 'rec1a', target: 'rec1b', text:'or', small:true}
+				},
+				{ 
+				  data: { id: 'rec2b', source: 'rec1b', target: 'rec1c', text:'or', small:true}
+				},
+				{ 
+				  data: { id: 'rec2c', source: 'rec1c', target: 'rec1a', text:'or', small:true}
+				},
+				{ 
+				  data: { id: 'm2r', source: 'med', target: 'rec', text:'', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'eff', text:'Effect', parent:'k', small:true },
+				},
+				{ 
+				  data: { id: 'eff1a', text:'Understand', parent:'eff', small:true },
+				  position: {x:1150,y:365}
+				},
+				{ 
+				  data: { id: 'eff1b', text:'Pathways are', parent:'eff', small:true },
+				  position: {x:1080,y:425}
+				},
+				{ 
+				  data: { id: 'eff1c', text:'Pathways work', parent:'eff', small:true },
+				  position: {x:1220,y:425}
+				},
+				{ 
+				  data: { id: 'eff2a', source: 'eff1a', target: 'eff1b', text:'what', small:true}
+				},
+				{ 
+				  data: { id: 'eff2b', source: 'eff1a', target: 'eff1c', text:'how', small:true}
+				},
+				{ 
+				  data: { id: 'r2e', source: 'rec', target: 'eff', text:'', directed:true, small:true}
+				},
+				{ 
+				  data: { id: 'h2', text:'', hid:true },
+				  position: {x:0,y:550}
+				},
+			  ],
+
+			  style: [ // the stylesheet for the graph
+				{
+				  selector: 'node',
+				  style: {
+					color:'DarkGreen',
+					'background-color': '#fff',
+					'border-color': 'SeaGreen',
+					'border-width': '5px',
+					'content': 'data(text)',
+					'text-halign': 'center',
+					'text-valign': 'center',
+					'width': '140px',
+					'height': '20px',
+					'shape': 'round-rectangle',
+					'padding': '10px',
+					'font-size': '30px'
+				  }
+				},
+				{
+				  selector: 'edge',
+				  style: {
+					'width': 15,
+					color:'white',
+					'text-outline-color': 'MediumSeaGreen',
+					'text-outline-width': '5px',
+					'line-color': 'MediumSeaGreen',
+					'target-arrow-color': 'MediumSeaGreen',
+					'target-arrow-shape': 'none',
+					'label': 'data(text)',
+					'text-valign': 'top'
+				  }
+				},
+				{
+				  selector: 'edge[directed]',
+				  style: {
+					'target-arrow-shape': 'triangle'
+				  }
+				},
+				{
+				  selector: 'node[small]',
+				  style: {
+					'width': '80px',
+					'height': '10px',
+					'font-size': '10px'
+				  }
+				},
+				{
+				  selector: 'edge[small]',
+				  style: {
+					'font-size': '10px',
+					'width': 7
+				  }
+				},
+				{
+				  selector: ':parent',
+				  style: {
+					'background-color': 'DarkGreen',
+					'background-opacity': '0.1',
+					'width': '70%',
+					'text-valign': 'top'
+				  } 
+				},
+				{
+				  selector: 'node[hid]',
+				  style: {
+					'width': '0px',
+					'height': '0px',
+					'border-width': '0px'
+				  }
+				},
+				{
+				  selector: 'node[small]:parent',
+				  style: {
+					'font-size': '20px'
+				  }
+				}
+			  ],
+
+			  layout: {
+				name: 'preset'
+			  }
+		});
+	</script>
+</body>
+</html> 
